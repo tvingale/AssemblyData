@@ -188,41 +188,68 @@ include APP_ROOT . '/includes/header.php';
 
 <!-- Metric Explanations -->
 <div class="card no-print" style="margin-top:1rem;">
-    <div class="card-header">Metric Calculations</div>
+    <div class="card-header">Metric Calculations &amp; Interpretation</div>
     <div style="font-size:0.85rem;line-height:1.6;">
         <table class="table-compact">
-            <tr>
-                <td style="width:140px;"><strong>Effective Minutes</strong></td>
-                <td>= Slot Duration - Break Time (during that slot)</td>
-            </tr>
-            <tr>
-                <td><strong>Target</strong></td>
-                <td>= Rate per Cell per Hour &times; (Effective Minutes &divide; 60) &times; Cells Operative</td>
-            </tr>
-            <tr>
-                <td><strong>Variance</strong></td>
-                <td>= Actual Output - Target Output</td>
-            </tr>
-            <tr>
-                <td><strong>Variance %</strong></td>
-                <td>= (Variance &divide; Target) &times; 100</td>
-            </tr>
-            <tr>
-                <td><strong>Avg Manpower</strong></td>
-                <td>= Sum of Manpower across all slots &divide; Number of slots entered</td>
-            </tr>
-            <tr>
-                <td><strong>Man Hours</strong></td>
-                <td>= Sum of (Manpower &times; Effective Hours) for each slot</td>
-            </tr>
-            <tr>
-                <td><strong>Seats/Person</strong></td>
-                <td>= Total Actual Output &divide; Total Man Hours</td>
-            </tr>
-            <tr>
-                <td><strong>Time Lost</strong></td>
-                <td>= Sum of minutes lost across all slots (entered during data entry)</td>
-            </tr>
+            <thead>
+                <tr>
+                    <th style="width:130px;">Metric</th>
+                    <th>Formula</th>
+                    <th style="width:200px;">Interpretation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Effective Minutes</strong></td>
+                    <td>Slot Duration - Break Time overlap</td>
+                    <td style="color:var(--neutral-600);">Actual working time available</td>
+                </tr>
+                <tr>
+                    <td><strong>Target</strong></td>
+                    <td>Rate/Cell/Hr &times; (Eff Min &divide; 60) &times; Cells</td>
+                    <td style="color:var(--neutral-600);">Expected output based on capacity</td>
+                </tr>
+                <tr style="background:var(--success-light);">
+                    <td><strong>Variance</strong></td>
+                    <td>Actual - Target</td>
+                    <td>
+                        <span style="color:var(--success);">&#9650; Positive = Good</span> (ahead of target)<br>
+                        <span style="color:var(--error);">&#9660; Negative = Bad</span> (behind target)
+                    </td>
+                </tr>
+                <tr style="background:var(--success-light);">
+                    <td><strong>Variance %</strong></td>
+                    <td>(Variance &divide; Target) &times; 100</td>
+                    <td>
+                        <span style="color:var(--success);">&#9650; &ge; 0% = On/Above target</span><br>
+                        <span style="color:var(--warning);">&#9660; -10% to 0% = Acceptable</span><br>
+                        <span style="color:var(--error);">&#9660; &lt; -10% = Needs attention</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Avg Manpower</strong></td>
+                    <td>Sum of MP &divide; Number of slots</td>
+                    <td style="color:var(--neutral-600);">Average workers per slot</td>
+                </tr>
+                <tr style="background:var(--success-light);">
+                    <td><strong>Seats/Person</strong></td>
+                    <td>Total Actual &divide; Total Man Hours</td>
+                    <td>
+                        <span style="color:var(--success);">&#9650; Higher = Better</span> (more efficient)<br>
+                        <span style="color:var(--neutral-600);">Measures labor productivity</span><br>
+                        <small>Compare against group's expected rate</small>
+                    </td>
+                </tr>
+                <tr style="background:var(--error-light);">
+                    <td><strong>Time Lost</strong></td>
+                    <td>Sum of minutes lost (all slots)</td>
+                    <td>
+                        <span style="color:var(--success);">&#9660; Lower = Better</span> (less disruption)<br>
+                        <span style="color:var(--warning);">30-60 min = Monitor</span><br>
+                        <span style="color:var(--error);">&gt; 60 min = Investigate cause</span>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>
