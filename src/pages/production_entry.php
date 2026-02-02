@@ -124,20 +124,25 @@ include APP_ROOT . '/includes/header.php';
     width: 100%;
     font-size: 0.8rem;
     border-collapse: collapse;
+    table-layout: fixed;
+}
+.history-table th,
+.history-table td {
+    padding: 0.5rem 0.4rem;
+    text-align: left;
+    border-bottom: 1px solid var(--neutral-200);
+    vertical-align: middle;
 }
 .history-table th {
     background: var(--neutral-200);
-    padding: 0.5rem 0.25rem;
-    text-align: left;
     font-weight: 600;
     font-size: 0.7rem;
+    text-transform: uppercase;
 }
-.history-table td {
-    padding: 0.5rem 0.25rem;
-    border-bottom: 1px solid var(--neutral-200);
-}
-.history-table .num {
+.history-table th.num,
+.history-table td.num {
     text-align: right;
+    padding-right: 0.5rem;
 }
 .history-table .edit-btn {
     padding: 0.25rem 0.5rem;

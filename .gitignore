@@ -19,3 +19,6 @@ Thumbs.db
 
 # Docs folder (local only)
 Docs/
+
+# Claude settings (local only)
+.claude/

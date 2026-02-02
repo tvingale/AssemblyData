@@ -320,17 +320,16 @@ tbody tr:hover { background: var(--neutral-100); }
 
 .table-compact th, .table-compact td { padding: 0.4rem 0.5rem; }
 
-/* Numeric alignment */
+/* Numeric alignment - ensure both th and td have same padding for alignment */
 td.num, th.num {
-    text-align: right;
+    text-align: right !important;
     white-space: nowrap;
-}
-/* Ensure table headers and cells align by using consistent box model */
-table {
-    table-layout: auto;
+    padding-left: 0.5rem;
+    padding-right: 0.75rem;
 }
 table th, table td {
     vertical-align: middle;
+    box-sizing: border-box;
 }
 
 /* Cumulative row */

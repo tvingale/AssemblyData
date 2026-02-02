@@ -81,17 +81,28 @@ include APP_ROOT . '/includes/header.php';
 <div class="card">
     <div class="card-header">Linewise Summary - <?= formatDate($date) ?></div>
     <div class="table-responsive">
-        <table>
+        <table style="table-layout:fixed;">
+            <colgroup>
+                <col style="width:20%;">
+                <col style="width:10%;">
+                <col style="width:10%;">
+                <col style="width:10%;">
+                <col style="width:10%;">
+                <col style="width:10%;">
+                <col style="width:10%;">
+                <col style="width:10%;">
+                <col style="width:10%;">
+            </colgroup>
             <thead>
                 <tr>
                     <th>Group</th>
-                    <th class="num">Total Target</th>
-                    <th class="num">Total Actual</th>
+                    <th class="num">Target</th>
+                    <th class="num">Actual</th>
                     <th class="num">Variance</th>
-                    <th class="num">Variance %</th>
-                    <th class="num">Avg Manpower</th>
+                    <th class="num">Var %</th>
+                    <th class="num">Avg MP</th>
                     <th class="num">Seats/Person</th>
-                    <th class="num">Time Lost (min)</th>
+                    <th class="num">Time Lost</th>
                     <th class="no-print"></th>
                 </tr>
             </thead>
