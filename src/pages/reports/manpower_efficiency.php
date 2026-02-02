@@ -134,7 +134,7 @@ include APP_ROOT . '/includes/header.php';
 ?>
 
 <div class="page-header">
-    <h1>Manpower Efficiency / Seats per Person</h1>
+    <h1>Manpower Efficiency / Output per Man Hour</h1>
     <button class="btn btn-outline no-print" onclick="window.print()">Print</button>
 </div>
 
@@ -170,7 +170,7 @@ include APP_ROOT . '/includes/header.php';
 <!-- Summary Cards -->
 <div class="summary-cards">
     <div class="summary-card info">
-        <h3>Avg Seats/Person</h3>
+        <h3>Avg Output/Man Hr</h3>
         <div class="value"><?= number_format($avgSPP, 2) ?></div>
     </div>
     <div class="summary-card success">
@@ -178,7 +178,7 @@ include APP_ROOT . '/includes/header.php';
         <div class="value" style="font-size:1rem;">
             <?php if ($bestDay): ?>
                 <?= formatDate($bestDay['date']) ?>
-                <br><strong><?= number_format($bestDay['spp'], 2) ?></strong> seats/person
+                <br><strong><?= number_format($bestDay['spp'], 2) ?></strong> output/man hr
             <?php else: ?>
                 -
             <?php endif; ?>
@@ -189,7 +189,7 @@ include APP_ROOT . '/includes/header.php';
         <div class="value" style="font-size:1rem;">
             <?php if ($worstDay): ?>
                 <?= formatDate($worstDay['date']) ?>
-                <br><strong><?= number_format($worstDay['spp'], 2) ?></strong> seats/person
+                <br><strong><?= number_format($worstDay['spp'], 2) ?></strong> output/man hr
             <?php else: ?>
                 -
             <?php endif; ?>
@@ -209,9 +209,9 @@ include APP_ROOT . '/includes/header.php';
     </div>
 </div>
 
-<!-- Line Chart: Seats per Person Trend -->
+<!-- Line Chart: Output per Man Hour Trend -->
 <div class="card">
-    <div class="card-header">Seats per Person Trend</div>
+    <div class="card-header">Output per Man Hour Trend</div>
     <div class="chart-container" style="max-width:100%;height:400px;">
         <canvas id="sppChart"></canvas>
     </div>
@@ -228,8 +228,8 @@ include APP_ROOT . '/includes/header.php';
                     <th>Group</th>
                     <th class="num">Total Output</th>
                     <th class="num">Man-Hours</th>
-                    <th class="num">Avg Manpower</th>
-                    <th class="num">Seats/Person</th>
+                    <th class="num">Avg Workers</th>
+                    <th class="num">Output/Man Hr</th>
                 </tr>
             </thead>
             <tbody>
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
             labels: labels,
             datasets: [
                 {
-                    label: 'Seats/Person',
+                    label: 'Output/Man Hr',
                     data: spp,
                     borderColor: '#2c5282',
                     backgroundColor: 'rgba(44, 82, 130, 0.1)',
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Seats per Person'
+                        text: 'Output per Man Hour'
                     }
                 }
             }

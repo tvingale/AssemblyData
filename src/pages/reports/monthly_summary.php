@@ -155,7 +155,7 @@ include APP_ROOT . '/includes/header.php';
         <div class="value"><?= number_format($grandActual) ?></div>
     </div>
     <div class="summary-card <?= $grandVariance >= 0 ? 'success' : 'danger' ?>">
-        <h3>Total Variance</h3>
+        <h3>Total Difference</h3>
         <div class="value"><?= ($grandVariance >= 0 ? '+' : '') . number_format($grandVariance) ?></div>
     </div>
     <div class="summary-card <?= $achievementPct >= 100 ? 'success' : ($achievementPct >= 90 ? 'warning' : 'danger') ?>">
@@ -190,8 +190,8 @@ include APP_ROOT . '/includes/header.php';
                     <th>Date</th>
                     <th class="num">Target</th>
                     <th class="num">Actual</th>
-                    <th class="num">Variance</th>
-                    <th class="num">Variance %</th>
+                    <th class="num">Difference</th>
+                    <th class="num">Achievement %</th>
                     <th class="num">Downtime (min)</th>
                 </tr>
             </thead>
@@ -206,7 +206,7 @@ include APP_ROOT . '/includes/header.php';
                             <?= ($tr['variance'] >= 0 ? '+' : '') . number_format($tr['variance']) ?>
                         </span>
                     </td>
-                    <td class="num"><?= ($tr['variance_pct'] >= 0 ? '+' : '') . $tr['variance_pct'] ?>%</td>
+                    <td class="num"><?= $tr['target'] > 0 ? number_format(($tr['actual'] / $tr['target']) * 100, 1) : '0' ?>%</td>
                     <td class="num"><?= number_format($tr['downtime'], 0) ?></td>
                 </tr>
                 <?php endforeach; ?>
@@ -223,7 +223,7 @@ include APP_ROOT . '/includes/header.php';
                             </span>
                         </strong>
                     </td>
-                    <td class="num"><strong><?= ($grandVariancePct >= 0 ? '+' : '') . $grandVariancePct ?>%</strong></td>
+                    <td class="num"><strong><?= $achievementPct ?>%</strong></td>
                     <td class="num"><strong><?= number_format($grandDowntime, 0) ?></strong></td>
                 </tr>
             </tfoot>

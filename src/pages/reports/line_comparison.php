@@ -170,8 +170,8 @@ include APP_ROOT . '/includes/header.php';
                     <th class="num">Total Actual</th>
                     <th class="num">Achievement %</th>
                     <th class="num">Total Downtime (min)</th>
-                    <th class="num">Avg Manpower</th>
-                    <th class="num">Seats/Person</th>
+                    <th class="num">Avg Workers</th>
+                    <th class="num">Output/Man Hr</th>
                     <th class="num">Working Days</th>
                 </tr>
             </thead>

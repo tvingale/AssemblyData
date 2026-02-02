@@ -190,7 +190,7 @@ foreach ($tableRows as $tr) { if ($tr['has_data']) { $hasAnyData = true; break; 
         <div class="value"><?= number_format($grandActual) ?></div>
     </div>
     <div class="summary-card <?= $grandVariance >= 0 ? 'success' : 'danger' ?>">
-        <h3>Week Variance</h3>
+        <h3>Week Difference</h3>
         <div class="value"><?= ($grandVariance >= 0 ? '+' : '') . number_format($grandVariance) ?></div>
     </div>
     <div class="summary-card <?= $grandVariancePct >= 0 ? 'success' : 'warning' ?>">
@@ -218,8 +218,8 @@ foreach ($tableRows as $tr) { if ($tr['has_data']) { $hasAnyData = true; break; 
                     <th>Day</th>
                     <th class="num">Target</th>
                     <th class="num">Actual</th>
-                    <th class="num">Variance</th>
-                    <th class="num">Variance %</th>
+                    <th class="num">Difference</th>
+                    <th class="num">Achievement %</th>
                     <th class="num">Downtime (min)</th>
                 </tr>
             </thead>
@@ -241,7 +241,7 @@ foreach ($tableRows as $tr) { if ($tr['has_data']) { $hasAnyData = true; break; 
                     </td>
                     <td class="num">
                         <?php if ($tr['has_data'] && $tr['target'] > 0): ?>
-                            <?= ($tr['variance_pct'] >= 0 ? '+' : '') . $tr['variance_pct'] ?>%
+                            <?= number_format(($tr['actual'] / $tr['target']) * 100, 1) ?>%
                         <?php else: ?>
                             -
                         <?php endif; ?>
@@ -263,7 +263,7 @@ foreach ($tableRows as $tr) { if ($tr['has_data']) { $hasAnyData = true; break; 
                         </strong>
                     </td>
                     <td class="num">
-                        <strong><?= ($grandVariancePct >= 0 ? '+' : '') . $grandVariancePct ?>%</strong>
+                        <strong><?= $grandTarget > 0 ? number_format(($grandActual / $grandTarget) * 100, 1) : '0' ?>%</strong>
                     </td>
                     <td class="num"><strong><?= number_format($grandDowntime, 0) ?></strong></td>
                 </tr>

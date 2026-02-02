@@ -19,8 +19,8 @@ foreach ($groups as $g) {
 
     $variance = $s['total_actual'] - $s['total_target'];
     $s['variance'] = round($variance, 2);
-    $s['variance_pct'] = $s['total_target'] > 0
-        ? round(($variance / $s['total_target']) * 100, 1) : 0;
+    $s['achievement_pct'] = $s['total_target'] > 0
+        ? round(($s['total_actual'] / $s['total_target']) * 100, 1) : 0;
 
     // Slot details
     $entries = getProductionEntries($date, $g['id']);
@@ -56,8 +56,8 @@ foreach ($groups as $g) {
 }
 
 $plantVariance = $plantActual - $plantTarget;
-$plantVariancePct = $plantTarget > 0 ? round(($plantVariance / $plantTarget) * 100, 1) : 0;
-$plantSeatsPerPerson = $plantManHours > 0 ? round($plantActual / $plantManHours, 2) : 0;
+$plantAchievementPct = $plantTarget > 0 ? round(($plantActual / $plantTarget) * 100, 1) : 0;
+$plantOutputPerManHr = $plantManHours > 0 ? round($plantActual / $plantManHours, 2) : 0;
 
 $pageTitle = 'Daily Summary';
 $baseUrl = '..';
@@ -97,10 +97,10 @@ include APP_ROOT . '/includes/header.php';
                     <th>Group</th>
                     <th class="num">Target</th>
                     <th class="num">Actual</th>
-                    <th class="num">Variance</th>
-                    <th class="num">Var %</th>
-                    <th class="num">Avg MP</th>
-                    <th class="num">Seats/Person</th>
+                    <th class="num">Difference</th>
+                    <th class="num">Achievement %</th>
+                    <th class="num">Avg Workers</th>
+                    <th class="num">Output/Man Hr</th>
                     <th class="num">Time Lost</th>
                 </tr>
             </thead>
@@ -115,7 +115,7 @@ include APP_ROOT . '/includes/header.php';
                             <?= ($s['variance'] >= 0 ? '+' : '') . number_format($s['variance']) ?>
                         </span>
                     </td>
-                    <td class="num"><?= ($s['variance_pct'] >= 0 ? '+' : '') . $s['variance_pct'] ?>%</td>
+                    <td class="num"><?= $s['achievement_pct'] ?>%</td>
                     <td class="num"><?= number_format($s['total_manpower_avg'], 1) ?></td>
                     <td class="num"><?= number_format($s['seats_per_person'], 2) ?></td>
                     <td class="num"><?= number_format($s['total_downtime_minutes'], 0) ?></td>
@@ -130,11 +130,11 @@ include APP_ROOT . '/includes/header.php';
                                     <th>Slot</th>
                                     <th>Time</th>
                                     <th class="num">Cells</th>
-                                    <th class="num">MP</th>
-                                    <th class="num">Eff Min</th>
+                                    <th class="num">Workers</th>
+                                    <th class="num">Work Min</th>
                                     <th class="num">Target</th>
                                     <th class="num">Actual</th>
-                                    <th class="num">Var</th>
+                                    <th class="num">Diff</th>
                                     <th class="num">Lost</th>
                                     <th>Reason</th>
                                 </tr>
@@ -176,9 +176,9 @@ include APP_ROOT . '/includes/header.php';
                     <td class="num <?= $plantVariance >= 0 ? 'variance-cell-positive' : 'variance-cell-negative' ?>">
                         <strong><?= ($plantVariance >= 0 ? '+' : '') . number_format($plantVariance) ?></strong>
                     </td>
-                    <td class="num"><strong><?= ($plantVariancePct >= 0 ? '+' : '') . $plantVariancePct ?>%</strong></td>
+                    <td class="num"><strong><?= $plantAchievementPct ?>%</strong></td>
                     <td class="num"><?= $groupCount > 0 ? number_format($plantManpower / $groupCount, 1) : '-' ?></td>
-                    <td class="num"><strong><?= number_format($plantSeatsPerPerson, 2) ?></strong></td>
+                    <td class="num"><strong><?= number_format($plantOutputPerManHr, 2) ?></strong></td>
                     <td class="num"><strong><?= number_format($plantDowntime, 0) ?></strong></td>
                 </tr>
             </tfoot>
@@ -207,7 +207,7 @@ include APP_ROOT . '/includes/header.php';
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Eff. Minutes</strong></td>
+                    <td><strong>Work Min</strong></td>
                     <td>Slot Duration - Breaks</td>
                     <td>Actual working time available in the slot</td>
                     <td>स्लॉटमध्ये उपलब्ध प्रत्यक्ष कामाचा वेळ</td>
@@ -219,7 +219,7 @@ include APP_ROOT . '/includes/header.php';
                     <td>ग्रुपच्या दरानुसार आणि सक्रिय सेल्सनुसार अपेक्षित उत्पादन</td>
                 </tr>
                 <tr style="background:var(--success-light);">
-                    <td><strong>Variance</strong></td>
+                    <td><strong>Difference</strong></td>
                     <td>Actual - Target</td>
                     <td>
                         <strong style="color:var(--success);">&#9650; Positive = Good</strong> - Produced more than expected<br>
@@ -231,34 +231,34 @@ include APP_ROOT . '/includes/header.php';
                     </td>
                 </tr>
                 <tr style="background:var(--success-light);">
-                    <td><strong>Variance %</strong></td>
-                    <td>(Variance / Target) × 100</td>
+                    <td><strong>Achievement %</strong></td>
+                    <td>(Actual / Target) × 100</td>
                     <td>
-                        <strong style="color:var(--success);">≥ 0%</strong> = On/above target - Great<br>
-                        <strong style="color:var(--warning);">-10% to 0%</strong> = Slightly behind - OK<br>
-                        <strong style="color:var(--error);">&lt; -10%</strong> = Behind - Needs attention
+                        <strong style="color:var(--success);">≥ 100%</strong> = On/above target - Great<br>
+                        <strong style="color:var(--warning);">90-100%</strong> = Slightly behind - OK<br>
+                        <strong style="color:var(--error);">&lt; 90%</strong> = Behind - Needs attention
                     </td>
                     <td>
-                        <strong style="color:var(--success);">≥ 0%</strong> = लक्ष्यावर/वर - उत्तम<br>
-                        <strong style="color:var(--warning);">-10% ते 0%</strong> = थोडे मागे - ठीक<br>
-                        <strong style="color:var(--error);">&lt; -10%</strong> = मागे - लक्ष द्या
+                        <strong style="color:var(--success);">≥ 100%</strong> = लक्ष्यावर/वर - उत्तम<br>
+                        <strong style="color:var(--warning);">90-100%</strong> = थोडे मागे - ठीक<br>
+                        <strong style="color:var(--error);">&lt; 90%</strong> = मागे - लक्ष द्या
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>Avg Manpower</strong></td>
-                    <td>Total MP / Slots</td>
+                    <td><strong>Avg Workers</strong></td>
+                    <td>Total Workers / Slots</td>
                     <td>Average workers deployed per time slot</td>
                     <td>प्रति टाइम स्लॉट सरासरी कामगार</td>
                 </tr>
                 <tr style="background:var(--success-light);">
-                    <td><strong>Seats/Person</strong></td>
+                    <td><strong>Output/Man Hr</strong></td>
                     <td>Actual / Man Hours</td>
                     <td>
-                        <strong style="color:var(--success);">&#9650; Higher = Better</strong> - More output per worker<br>
+                        <strong style="color:var(--success);">&#9650; Higher = Better</strong> - More output per worker hour<br>
                         Compare with group's expected rate
                     </td>
                     <td>
-                        <strong style="color:var(--success);">&#9650; जास्त = चांगले</strong> - प्रति कामगार जास्त उत्पादन<br>
+                        <strong style="color:var(--success);">&#9650; जास्त = चांगले</strong> - प्रति कामगार तास जास्त उत्पादन<br>
                         ग्रुपच्या अपेक्षित दराशी तुलना करा
                     </td>
                 </tr>

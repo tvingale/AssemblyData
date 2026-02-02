@@ -63,7 +63,7 @@ include APP_ROOT . '/includes/header.php';
         <small style="color:var(--gray-500)"><?= $plantPct ?>% of target</small>
     </div>
     <div class="summary-card <?= $plantVariance >= 0 ? 'success' : 'danger' ?>">
-        <h3>Variance</h3>
+        <h3>Difference</h3>
         <div class="value <?= $plantVariance >= 0 ? 'variance-positive' : 'variance-negative' ?>">
             <?= ($plantVariance >= 0 ? '+' : '') . number_format($plantVariance) ?>
         </div>
@@ -94,12 +94,12 @@ include APP_ROOT . '/includes/header.php';
                  style="width:<?= min(100, $pct) ?>%"></div>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:0.35rem;font-size:0.8rem;color:var(--gray-500);">
-            <span>Variance: <span class="<?= $variance >= 0 ? 'variance-positive' : 'variance-negative' ?>"><?= ($variance >= 0 ? '+' : '') . number_format($variance) ?></span></span>
+            <span>Diff: <span class="<?= $variance >= 0 ? 'variance-positive' : 'variance-negative' ?>"><?= ($variance >= 0 ? '+' : '') . number_format($variance) ?></span></span>
             <span>Lost: <?= number_format($s['total_downtime_minutes'], 0) ?>m</span>
         </div>
         <?php if ($s['seats_per_person'] > 0): ?>
         <div style="font-size:0.8rem;color:var(--gray-500);margin-top:0.15rem;">
-            Seats/Person: <?= number_format($s['seats_per_person'], 2) ?>
+            Output/Man Hr: <?= number_format($s['seats_per_person'], 2) ?>
         </div>
         <?php endif; ?>
     </div>

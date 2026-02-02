@@ -229,7 +229,7 @@ include APP_ROOT . '/includes/header.php';
                 <div class="value" id="ds-actual-<?= $g['id'] ?>">0</div>
             </div>
             <div class="day-summary-item">
-                <div class="label">Variance</div>
+                <div class="label">Difference</div>
                 <div class="value" id="ds-variance-<?= $g['id'] ?>">0</div>
             </div>
             <div class="day-summary-item">
@@ -257,7 +257,7 @@ include APP_ROOT . '/includes/header.php';
         <!-- Calculated Values Display -->
         <div class="calc-display">
             <div class="calc-item">
-                <div class="calc-label">Eff. Min</div>
+                <div class="calc-label">Work Min</div>
                 <div class="calc-value" id="calc-effmin-<?= $g['id'] ?>">0</div>
             </div>
             <div class="calc-item">
@@ -265,7 +265,7 @@ include APP_ROOT . '/includes/header.php';
                 <div class="calc-value" id="calc-target-<?= $g['id'] ?>">0</div>
             </div>
             <div class="calc-item">
-                <div class="calc-label">Variance</div>
+                <div class="calc-label">Diff</div>
                 <div class="calc-value" id="calc-variance-<?= $g['id'] ?>">0</div>
             </div>
         </div>
@@ -329,7 +329,7 @@ include APP_ROOT . '/includes/header.php';
                     <th class="num">MP</th>
                     <th class="num">Target</th>
                     <th class="num">Actual</th>
-                    <th class="num">Var</th>
+                    <th class="num">Diff</th>
                     <th class="num">Lost</th>
                     <th></th>
                 </tr>
