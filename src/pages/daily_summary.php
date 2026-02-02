@@ -188,19 +188,21 @@ include APP_ROOT . '/includes/header.php';
 
 <!-- Metric Explanations -->
 <div class="card no-print" style="margin-top:1rem;">
-    <div class="card-header">Metric Calculations &amp; Interpretation</div>
-    <div style="font-size:0.85rem;line-height:1.5;">
-        <table class="table-compact" style="table-layout:fixed;">
+    <div class="card-header">Metric Calculations &amp; Interpretation / मेट्रिक गणना आणि अर्थ</div>
+    <div style="font-size:0.85rem;line-height:1.5;overflow-x:auto;">
+        <table class="table-compact" style="table-layout:fixed;min-width:800px;">
             <colgroup>
+                <col style="width:12%;">
                 <col style="width:18%;">
-                <col style="width:27%;">
-                <col style="width:55%;">
+                <col style="width:35%;">
+                <col style="width:35%;">
             </colgroup>
             <thead>
                 <tr>
                     <th>Metric</th>
                     <th>Formula</th>
-                    <th>Interpretation</th>
+                    <th>Interpretation (English)</th>
+                    <th>अर्थ (मराठी)</th>
                 </tr>
             </thead>
             <tbody>
@@ -208,49 +210,70 @@ include APP_ROOT . '/includes/header.php';
                     <td><strong>Eff. Minutes</strong></td>
                     <td>Slot Duration - Breaks</td>
                     <td>Actual working time available in the slot</td>
+                    <td>स्लॉटमध्ये उपलब्ध प्रत्यक्ष कामाचा वेळ</td>
                 </tr>
                 <tr>
                     <td><strong>Target</strong></td>
-                    <td>Rate &times; (Eff Min/60) &times; Cells</td>
+                    <td>Rate × (Eff Min/60) × Cells</td>
                     <td>Expected output based on group's rate and operative cells</td>
+                    <td>ग्रुपच्या दरानुसार आणि सक्रिय सेल्सनुसार अपेक्षित उत्पादन</td>
                 </tr>
                 <tr style="background:var(--success-light);">
                     <td><strong>Variance</strong></td>
                     <td>Actual - Target</td>
                     <td>
                         <strong style="color:var(--success);">&#9650; Positive = Good</strong> - Produced more than expected<br>
-                        <strong style="color:var(--error);">&#9660; Negative = Bad</strong> - Produced less than expected, check reason
+                        <strong style="color:var(--error);">&#9660; Negative = Bad</strong> - Produced less than expected
+                    </td>
+                    <td>
+                        <strong style="color:var(--success);">&#9650; धन = चांगले</strong> - अपेक्षेपेक्षा जास्त उत्पादन<br>
+                        <strong style="color:var(--error);">&#9660; ऋण = वाईट</strong> - अपेक्षेपेक्षा कमी उत्पादन
                     </td>
                 </tr>
                 <tr style="background:var(--success-light);">
                     <td><strong>Variance %</strong></td>
-                    <td>(Variance / Target) &times; 100</td>
+                    <td>(Variance / Target) × 100</td>
                     <td>
-                        <strong style="color:var(--success);">&ge; 0%</strong> = On or above target - Great performance<br>
-                        <strong style="color:var(--warning);">-10% to 0%</strong> = Slightly behind - Acceptable, minor issues<br>
-                        <strong style="color:var(--error);">&lt; -10%</strong> = Significantly behind - Needs immediate attention
+                        <strong style="color:var(--success);">≥ 0%</strong> = On/above target - Great<br>
+                        <strong style="color:var(--warning);">-10% to 0%</strong> = Slightly behind - OK<br>
+                        <strong style="color:var(--error);">&lt; -10%</strong> = Behind - Needs attention
+                    </td>
+                    <td>
+                        <strong style="color:var(--success);">≥ 0%</strong> = लक्ष्यावर/वर - उत्तम<br>
+                        <strong style="color:var(--warning);">-10% ते 0%</strong> = थोडे मागे - ठीक<br>
+                        <strong style="color:var(--error);">&lt; -10%</strong> = मागे - लक्ष द्या
                     </td>
                 </tr>
                 <tr>
                     <td><strong>Avg Manpower</strong></td>
                     <td>Total MP / Slots</td>
-                    <td>Average workers deployed per time slot throughout the day</td>
+                    <td>Average workers deployed per time slot</td>
+                    <td>प्रति टाइम स्लॉट सरासरी कामगार</td>
                 </tr>
                 <tr style="background:var(--success-light);">
                     <td><strong>Seats/Person</strong></td>
-                    <td>Actual Output / Man Hours</td>
+                    <td>Actual / Man Hours</td>
                     <td>
-                        <strong style="color:var(--success);">&#9650; Higher = Better</strong> - More output per worker hour<br>
-                        Measures labor productivity. Compare with group's expected rate (e.g., if rate is 6/hr, seats/person should be near 6)
+                        <strong style="color:var(--success);">&#9650; Higher = Better</strong> - More output per worker<br>
+                        Compare with group's expected rate
+                    </td>
+                    <td>
+                        <strong style="color:var(--success);">&#9650; जास्त = चांगले</strong> - प्रति कामगार जास्त उत्पादन<br>
+                        ग्रुपच्या अपेक्षित दराशी तुलना करा
                     </td>
                 </tr>
                 <tr style="background:var(--error-light);">
                     <td><strong>Time Lost</strong></td>
                     <td>Sum of lost minutes</td>
                     <td>
-                        <strong style="color:var(--success);">&#9660; Lower = Better</strong> - Less production disruption<br>
-                        <strong style="color:var(--warning);">30-60 min</strong> = Monitor the cause<br>
-                        <strong style="color:var(--error);">&gt; 60 min</strong> = Significant loss, investigate and take corrective action
+                        <strong style="color:var(--success);">&#9660; Lower = Better</strong> - Less disruption<br>
+                        <strong style="color:var(--warning);">30-60 min</strong> = Monitor<br>
+                        <strong style="color:var(--error);">&gt; 60 min</strong> = Investigate
+                    </td>
+                    <td>
+                        <strong style="color:var(--success);">&#9660; कमी = चांगले</strong> - कमी व्यत्यय<br>
+                        <strong style="color:var(--warning);">30-60 मिनिटे</strong> = निरीक्षण करा<br>
+                        <strong style="color:var(--error);">&gt; 60 मिनिटे</strong> = तपास करा
                     </td>
                 </tr>
             </tbody>
