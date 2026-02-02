@@ -22,3 +22,10 @@ Docs/
 
 # Claude settings (local only)
 .claude/
+
+# Screenshots and temp images
+*.jpg
+*.jpeg
+*.png
+!src/assets/images/*.png
+!logo.png
