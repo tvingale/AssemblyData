@@ -1,0 +1,21 @@
+# Environment and config
+src/config/database.php
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temp files
+*.tmp
+*.bak
+
+# Docs folder (local only)
+Docs/
