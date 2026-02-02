@@ -590,14 +590,15 @@ table select { width: 140px; }
     cursor: pointer;
     user-select: none;
 }
-.expandable-toggle::before {
+.expandable-toggle td:first-child::before {
     content: '\25B6';
     display: inline-block;
     margin-right: 0.5rem;
     transition: transform 0.2s;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    color: var(--neutral-500);
 }
-.expandable-toggle.open::before { transform: rotate(90deg); }
+.expandable-toggle.open td:first-child::before { transform: rotate(90deg); }
 .expandable-detail { display: none; }
 .expandable-detail.open { display: table-row; }
 

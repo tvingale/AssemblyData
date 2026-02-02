@@ -83,15 +83,14 @@ include APP_ROOT . '/includes/header.php';
     <div class="table-responsive">
         <table style="table-layout:fixed;">
             <colgroup>
-                <col style="width:20%;">
-                <col style="width:10%;">
-                <col style="width:10%;">
-                <col style="width:10%;">
-                <col style="width:10%;">
-                <col style="width:10%;">
-                <col style="width:10%;">
-                <col style="width:10%;">
-                <col style="width:10%;">
+                <col style="width:22%;">
+                <col style="width:11%;">
+                <col style="width:11%;">
+                <col style="width:11%;">
+                <col style="width:11%;">
+                <col style="width:11%;">
+                <col style="width:12%;">
+                <col style="width:11%;">
             </colgroup>
             <thead>
                 <tr>
@@ -103,7 +102,6 @@ include APP_ROOT . '/includes/header.php';
                     <th class="num">Avg MP</th>
                     <th class="num">Seats/Person</th>
                     <th class="num">Time Lost</th>
-                    <th class="no-print"></th>
                 </tr>
             </thead>
             <tbody>
@@ -121,11 +119,10 @@ include APP_ROOT . '/includes/header.php';
                     <td class="num"><?= number_format($s['total_manpower_avg'], 1) ?></td>
                     <td class="num"><?= number_format($s['seats_per_person'], 2) ?></td>
                     <td class="num"><?= number_format($s['total_downtime_minutes'], 0) ?></td>
-                    <td class="no-print"><small>Click to expand</small></td>
                 </tr>
                 <!-- Expandable detail row -->
                 <tr id="detail-<?= $s['group_id'] ?>" class="expandable-detail">
-                    <td colspan="9" style="padding:0;">
+                    <td colspan="8" style="padding:0;">
                         <?php if (!empty($s['slot_details'])): ?>
                         <table class="table-compact" style="margin:0.5rem 1rem 0.5rem 2rem; width:calc(100% - 3rem);">
                             <thead>
@@ -183,7 +180,6 @@ include APP_ROOT . '/includes/header.php';
                     <td class="num"><?= $groupCount > 0 ? number_format($plantManpower / $groupCount, 1) : '-' ?></td>
                     <td class="num"><strong><?= number_format($plantSeatsPerPerson, 2) ?></strong></td>
                     <td class="num"><strong><?= number_format($plantDowntime, 0) ?></strong></td>
-                    <td class="no-print"></td>
                 </tr>
             </tfoot>
         </table>
