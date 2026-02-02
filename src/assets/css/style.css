@@ -430,6 +430,33 @@ textarea { resize: vertical; min-height: 80px; }
     margin-top: 4px;
 }
 
+/* Date input with DD-MMM-YYYY display */
+.date-input-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.date-input-wrapper .date-display {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-default);
+    background: var(--neutral-100);
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--radius);
+    min-width: 95px;
+    text-align: center;
+}
+.date-input-wrapper input[type="date"] {
+    width: auto;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+.date-input-wrapper input[type="date"]:hover,
+.date-input-wrapper input[type="date"]:focus {
+    opacity: 1;
+}
+
 /* Inline inputs in tables */
 table input[type="number"],
 table input[type="text"],

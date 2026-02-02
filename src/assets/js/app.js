@@ -66,6 +66,47 @@ const App = {
     },
 
     /**
+     * Format date as DD-MMM-YYYY
+     */
+    formatDate(dateStr) {
+        if (!dateStr) return '';
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const d = new Date(dateStr + 'T00:00:00');
+        const day = String(d.getDate()).padStart(2, '0');
+        const mon = months[d.getMonth()];
+        const year = d.getFullYear();
+        return `${day}-${mon}-${year}`;
+    },
+
+    /**
+     * Initialize date inputs to show DD-MMM-YYYY format
+     */
+    initDateInputs() {
+        document.querySelectorAll('input[type="date"]').forEach(input => {
+            // Create wrapper if not already wrapped
+            if (input.parentElement.classList.contains('date-input-wrapper')) return;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'date-input-wrapper';
+            wrapper.style.cssText = 'display:inline-flex;align-items:center;gap:0.5rem;';
+
+            const display = document.createElement('span');
+            display.className = 'date-display';
+            display.style.cssText = 'font-weight:600;min-width:100px;';
+            display.textContent = App.formatDate(input.value);
+
+            input.parentNode.insertBefore(wrapper, input);
+            wrapper.appendChild(display);
+            wrapper.appendChild(input);
+
+            // Update display when date changes
+            input.addEventListener('change', () => {
+                display.textContent = App.formatDate(input.value);
+            });
+        });
+    },
+
+    /**
      * Get variance class
      */
     varianceClass(value) {
@@ -131,4 +172,5 @@ const App = {
 
 document.addEventListener('DOMContentLoaded', () => {
     App.initNav();
+    App.initDateInputs();
 });
