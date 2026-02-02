@@ -118,7 +118,7 @@ foreach ($weekDates as $d) {
         'has_data'     => $row !== null,
     ];
 
-    $chartLabels[]  = date('D, d M', strtotime($d));
+    $chartLabels[]  = date('d-M', strtotime($d));
     $chartTargets[] = round($target);
     $chartActuals[] = $actual;
 

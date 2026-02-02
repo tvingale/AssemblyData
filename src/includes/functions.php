@@ -156,10 +156,10 @@ function formatTime(string $time): string {
 }
 
 /**
- * Format date for display
+ * Format date for display (DD-MMM-YYYY)
  */
 function formatDate(string $date): string {
-    return date('D, d M Y', strtotime($date));
+    return date('d-M-Y', strtotime($date));
 }
 
 /**

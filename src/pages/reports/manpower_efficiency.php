@@ -92,7 +92,7 @@ foreach ($aggRows as $r) {
     $dayManHours = (float)$r['day_man_hours'];
     $spp = $dayManHours > 0 ? round($dayActual / $dayManHours, 2) : 0;
 
-    $chartLabels[] = date('d M', strtotime($r['production_date']));
+    $chartLabels[] = date('d-M', strtotime($r['production_date']));
     $chartSPP[]    = $spp;
 
     $dailyData[] = [
