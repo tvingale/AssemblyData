@@ -79,29 +79,41 @@ const App = {
     },
 
     /**
-     * Initialize date inputs to show DD-MMM-YYYY format
+     * Initialize date inputs to show DD-MMM-YYYY format in the field
      */
     initDateInputs() {
         document.querySelectorAll('input[type="date"]').forEach(input => {
-            // Create wrapper if not already wrapped
-            if (input.parentElement.classList.contains('date-input-wrapper')) return;
+            if (input.dataset.formatted) return; // Already processed
+            input.dataset.formatted = 'true';
 
-            const wrapper = document.createElement('div');
-            wrapper.className = 'date-input-wrapper';
-            wrapper.style.cssText = 'display:inline-flex;align-items:center;gap:0.5rem;';
+            const originalValue = input.value; // YYYY-MM-DD format
+            const inputId = input.id;
+            const inputName = input.name || inputId;
 
-            const display = document.createElement('span');
-            display.className = 'date-display';
-            display.style.cssText = 'font-weight:600;min-width:100px;';
-            display.textContent = App.formatDate(input.value);
+            // Create a text input to display DD-MMM-YYYY
+            const textInput = document.createElement('input');
+            textInput.type = 'text';
+            textInput.className = input.className + ' date-text-input';
+            textInput.value = App.formatDate(originalValue);
+            textInput.readOnly = true;
+            textInput.style.cssText = 'cursor:pointer;' + (input.style.cssText || '');
+            if (inputId) textInput.id = inputId + '_display';
 
-            input.parentNode.insertBefore(wrapper, input);
-            wrapper.appendChild(display);
-            wrapper.appendChild(input);
+            // Hide the original date input but keep it functional
+            input.style.cssText = 'position:absolute;opacity:0;width:1px;height:1px;pointer-events:none;';
+            input.tabIndex = -1;
 
-            // Update display when date changes
+            // Insert text input before the hidden date input
+            input.parentNode.insertBefore(textInput, input);
+
+            // Click on text input opens the date picker
+            textInput.addEventListener('click', () => {
+                input.showPicker ? input.showPicker() : input.focus();
+            });
+
+            // When date changes, update the text display
             input.addEventListener('change', () => {
-                display.textContent = App.formatDate(input.value);
+                textInput.value = App.formatDate(input.value);
             });
         });
     },

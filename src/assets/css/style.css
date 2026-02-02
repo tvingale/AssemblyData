@@ -431,30 +431,18 @@ textarea { resize: vertical; min-height: 80px; }
 }
 
 /* Date input with DD-MMM-YYYY display */
-.date-input-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-.date-input-wrapper .date-display {
+.date-text-input {
+    cursor: pointer;
     font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--text-default);
-    background: var(--neutral-100);
-    padding: 0.4rem 0.6rem;
-    border-radius: var(--radius);
-    min-width: 95px;
-    text-align: center;
+    background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z'/%3E%3C/svg%3E") no-repeat right 10px center;
+    padding-right: 35px !important;
 }
-.date-input-wrapper input[type="date"] {
-    width: auto;
-    padding: 0.4rem 0.5rem;
-    font-size: 0.8rem;
-    opacity: 0.7;
+.date-text-input:hover {
+    border-color: var(--primary);
 }
-.date-input-wrapper input[type="date"]:hover,
-.date-input-wrapper input[type="date"]:focus {
-    opacity: 1;
+.date-text-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(197, 58, 58, 0.15);
 }
 
 /* Inline inputs in tables */
